@@ -724,7 +724,7 @@ int handleBaron(int currentPlayer, int choice1, struct gameState *state)
                     printf("Must gain an estate if there are any\n");
                 }
                 getCardFromSupply(estate, state, currentPlayer);
-                card_not_discarded = 0; //Exit the loop
+                // card_not_discarded = 0; //Exit the loop
             }
 
             else
