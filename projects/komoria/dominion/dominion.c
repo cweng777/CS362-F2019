@@ -681,6 +681,19 @@ int getCost(int cardNumber)
     return -1;
 }
 
+void getCardFromSupply(int supplyPos, struct gameState *state, int player) {
+    if (supplyCount(supplyPos, state) > 0)
+    {
+        gainCard(supplyPos, state, 0, player);
+
+        state->supplyCount[supplyPos]--; //Decrement supplyPos card
+        if (supplyCount(supplyPos, state) == 0)
+        {
+            isGameOver(state);
+        }
+    }
+}
+
 int handleBaron(int currentPlayer, int choice1, struct gameState *state)
 {
     state->numBuys++; //Increase buys by 1!
@@ -710,16 +723,7 @@ int handleBaron(int currentPlayer, int choice1, struct gameState *state)
                     printf("No estate cards in your hand, invalid choice\n");
                     printf("Must gain an estate if there are any\n");
                 }
-                if (supplyCount(estate, state) > 0)
-                {
-                    gainCard(estate, state, 0, currentPlayer);
-
-                    state->supplyCount[estate]--; //Decrement estates
-                    if (supplyCount(estate, state) == 0)
-                    {
-                        isGameOver(state);
-                    }
-                }
+                getCardFromSupply(estate, state, currentPlayer);
                 card_not_discarded = 0; //Exit the loop
             }
 
@@ -732,16 +736,7 @@ int handleBaron(int currentPlayer, int choice1, struct gameState *state)
 
     else
     {
-        if (supplyCount(estate, state) > 0)
-        {
-            gainCard(estate, state, 0, currentPlayer); //Gain an estate
-
-            state->supplyCount[estate]--; //Decrement Estates
-            if (supplyCount(estate, state) == 0)
-            {
-                isGameOver(state);
-            }
-        }
+        getCardFromSupply(estate, state, currentPlayer);
     }
 
     return 0;
