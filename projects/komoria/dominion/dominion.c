@@ -742,6 +742,14 @@ int handleBaron(int currentPlayer, int choice1, struct gameState *state)
     return 0;
 }
 
+void discardHand(int player, struct gameState *state)
+{
+    while (state->handCount[player] > 0)
+    {
+        discardCard(0, player, state, 0);
+    }
+}
+
 int handleMinion(int currentPlayer, int choice1, int choice2, struct gameState *state, int handPos)
 {
     //+1 action
@@ -757,10 +765,7 @@ int handleMinion(int currentPlayer, int choice1, int choice2, struct gameState *
     else if (choice2) //discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
     {
         //discard hand
-        while (numHandCards(state) > 0)
-        {
-            discardCard(handPos, currentPlayer, state, 0);
-        }
+        discardHand(currentPlayer, state);
 
         //draw 4
         for (int i = 0; i < 4; i++)
@@ -775,11 +780,8 @@ int handleMinion(int currentPlayer, int choice1, int choice2, struct gameState *
             {
                 if (state->handCount[i] > 4)
                 {
-                    //discard hand
-                    while (state->handCount[i] > 0)
-                    {
-                        discardCard(handPos, i, state, 0);
-                    }
+                    //discard i-th player's hand
+                    discardHand(i, state);
 
                     //draw 4
                     for (int j = 0; j < 4; j++)
