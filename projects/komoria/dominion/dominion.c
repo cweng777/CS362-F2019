@@ -950,7 +950,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         return 0;
 
     case baron:
-        return handleBaron(currentPlayer, state, choice1);
+        return handleBaron(currentPlayer, choice1, state);
     //     state->numBuys++;//Increase buys by 1!
     //     if (choice1 > 0) { //Boolean true or going to discard an estate
     //         int p = 0;//Iterator for hand!
