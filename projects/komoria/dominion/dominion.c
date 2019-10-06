@@ -697,7 +697,7 @@ void getCardFromSupply(int supplyPos, struct gameState *state, int player) {
 int handleBaron(int currentPlayer, int choice1, struct gameState *state)
 {
     state->numBuys++; //Increase buys by 1!
-    if (choice1 > 0)
+    if (choice1 < 0) // Introduce bug1
     {                               //Boolean true or going to discard an estate
         int p = 0;                  //Iterator for hand!
         int card_not_discarded = 1; //Flag for discard set!
