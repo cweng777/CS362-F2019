@@ -750,6 +750,14 @@ void discardHand(int player, struct gameState *state)
     }
 }
 
+void drawNCard(int n, int player, struct gameState *state)
+{
+    for (int i = 0; i < n; i++)
+    {
+        drawCard(player, state);
+    }
+}
+
 int handleMinion(int currentPlayer, int choice1, int choice2, struct gameState *state, int handPos)
 {
     //+1 action
@@ -768,10 +776,7 @@ int handleMinion(int currentPlayer, int choice1, int choice2, struct gameState *
         discardHand(currentPlayer, state);
 
         //draw 4
-        for (int i = 0; i < 4; i++)
-        {
-            drawCard(currentPlayer, state);
-        }
+        drawNCard(4, currentPlayer, state);
 
         //other players discard hand and redraw if hand size > 4
         for (int i = 0; i < state->numPlayers; i++)
@@ -784,10 +789,7 @@ int handleMinion(int currentPlayer, int choice1, int choice2, struct gameState *
                     discardHand(i, state);
 
                     //draw 4
-                    for (int j = 0; j < 4; j++)
-                    {
-                        drawCard(i, state);
-                    }
+                    drawNCard(4, i, state);
                 }
             }
         }
