@@ -842,7 +842,7 @@ int handleAmbassador(int currentPlayer, int choice1, int choice2, struct gameSta
     discardCard(handPos, currentPlayer, state, 0);
 
     //trash copies of cards returned to supply
-    for (j = 0; j < choice2; j++)
+    for (j = 0; j < 2; j++) // introduce bug1
     {
         for (int i = 0; i < state->handCount[currentPlayer]; i++)
         {
