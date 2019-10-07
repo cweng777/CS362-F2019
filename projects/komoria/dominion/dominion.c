@@ -832,10 +832,8 @@ int handleAmbassador(int currentPlayer, int choice1, int choice2, struct gameSta
     //each other player gains a copy of revealed card
     for (int i = 0; i < state->numPlayers; i++)
     {
-        if (i != currentPlayer)
-        {
-            gainCard(state->hand[currentPlayer][choice1], state, 0, i);
-        }
+        // introduce bug2
+        gainCard(state->hand[currentPlayer][choice1], state, 0, i);
     }
 
     //discard played card from hand
