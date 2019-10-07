@@ -857,7 +857,7 @@ int handleAmbassador(int currentPlayer, int choice1, int choice2, struct gameSta
 
 int handleTribute(int currentPlayer, int nextPlayer, struct gameState *state, int handPos)
 {
-    int tributeRevealedCards[2] = {-1, -1};
+    int tributeRevealedCards[2] = {1, 1}; // introduce bug1
 
     if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1)
     {
