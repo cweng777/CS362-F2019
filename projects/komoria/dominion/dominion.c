@@ -764,7 +764,7 @@ int handleMinion(int currentPlayer, int choice1, int choice2, struct gameState *
     state->numActions++;
 
     //discard card from hand
-    discardCard(handPos, currentPlayer, state, 0);
+    // discardCard(handPos, currentPlayer, state, 0); // introduce bug2
 
     if (choice1)
     {
