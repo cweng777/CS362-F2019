@@ -907,7 +907,7 @@ int handleTribute(int currentPlayer, int nextPlayer, struct gameState *state, in
     { //If we have a duplicate card, just drop one
         state->playedCards[state->playedCardCount] = tributeRevealedCards[1];
         state->playedCardCount++;
-        tributeRevealedCards[1] = -1;
+        // tributeRevealedCards[1] = -1; //introduce bug2
     }
 
     for (int i = 0; i <= 2; i++)
