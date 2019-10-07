@@ -783,7 +783,7 @@ int handleMinion(int currentPlayer, int choice1, int choice2, struct gameState *
         {
             if (i != currentPlayer)
             {
-                if (state->handCount[i] > 4)
+                if (state->handCount[i] < 4) // introduce bug1
                 {
                     //discard i-th player's hand
                     discardHand(i, state);
