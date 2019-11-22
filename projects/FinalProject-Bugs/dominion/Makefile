@@ -21,18 +21,34 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-
+# ------------------------------------------------
+# For group project: unit tests
 unittest9: unittest9.c dominion.o rngs.o
 	gcc  -o unittest9 -g  unittest9.c dominion.o rngs.o $(CFLAGS)
-	./unittest9
 
 unittest10: unittest10.c dominion.o rngs.o
 	gcc  -o unittest10 -g  unittest10.c dominion.o rngs.o $(CFLAGS)
-	./unittest10
 
 unittest11: unittest11.c dominion.o rngs.o
 	gcc  -o unittest11 -g  unittest11.c dominion.o rngs.o $(CFLAGS)
-	./unittest11
+
+unittestresults: unittest9 unittest10 unittest11
+	@echo "--- UNIT TEST RESULTS ---" > unittestresults.out
+	# ./unittest1
+	# ./unittest2
+	# ./unittest3
+	# ./unittest4
+	# ./unittest5
+	# ./unittest6
+	# ./unittest7
+	# ./unittest8
+	./unittest9 >> unittestresults.out
+	./unittest10 >> unittestresults.out
+	./unittest11 >> unittestresults.out
+	@echo "--- COVERAGE ---" >> unittestresults.out
+	gcov dominion.c -bf >> unittestresults.out
+
+# ------------------------------------------------
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
@@ -41,4 +57,5 @@ all: playdom player
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe \
-	unittest9 unittest10 unittest11
+	unittest1 unittest2 unittest3 unittest4 unittest5 unittest6 unittest7 unittest8 unittest9 unittest10 unittest11 \
+	unittestresults.out
